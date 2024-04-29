@@ -1,4 +1,6 @@
-import UIKit
+//: [Previous](@previous)
+
+import Foundation
 
 class ExampleClass {
     
@@ -34,3 +36,4 @@ var example1: ExampleClass? = ExampleClass()
 example1?.startLongJobWithTask()
 example1 = nil
 
+//: [Next](@next)

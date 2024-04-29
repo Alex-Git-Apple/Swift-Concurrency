@@ -1,3 +1,5 @@
+//: [Previous](@previous)
+
 import UIKit
 
 actor ImageDownloader {
@@ -51,3 +53,5 @@ Task {
     let image = try? await imageLoader.getImage(from: url)
     print(image != nil)
 }
+
+//: [Next](@next)

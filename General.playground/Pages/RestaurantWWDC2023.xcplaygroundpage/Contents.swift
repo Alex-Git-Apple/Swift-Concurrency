@@ -1,3 +1,5 @@
+//: [Previous](@previous)
+
 import UIKit
 
 struct Order {}
@@ -59,3 +61,5 @@ func run() async throws {
         workTask.cancel()
     }
 }
+
+//: [Next](@next)
