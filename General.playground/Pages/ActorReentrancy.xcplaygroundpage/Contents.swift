@@ -18,13 +18,17 @@ actor ImageDownloader {
         }
     }
     
-    func getImage(from url: URL) async throws -> UIImage? {
-        if let cachedEntry = cache[url] {
+    private func setCacheEntry(entry: CachedEntry?, url: URL) {
+        cache[url] = entry
+    }
+    
+    nonisolated func getImage(from url: URL) async throws -> UIImage? {
+        if let cachedEntry = await cache[url] {
             switch cachedEntry {
             case .finished(let image):
                 return image
             case .inProgress(let task):
-                try await task.value
+                return try await task.value
             }
         }
         
@@ -32,17 +36,16 @@ actor ImageDownloader {
             try await download(from: url)
         }
         
-        cache[url] = .inProgress(task)
+        await setCacheEntry(entry: .inProgress(task), url: url)
         
         do {
             let image = try await task.value
-            cache[url] = .finished(image)
+            await setCacheEntry(entry: .finished(image), url: url)
             return image
         } catch {
-            cache[url] = nil
+            await setCacheEntry(entry: nil, url: url)
             throw error
         }
-        
     }
 }
 
