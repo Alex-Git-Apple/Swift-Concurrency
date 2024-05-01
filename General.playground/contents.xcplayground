@@ -5,5 +5,7 @@
         <page name='StrongReferenceTask'/>
         <page name='ActorReentrancy'/>
         <page name='RestaurantWWDC2023'/>
+        <page name='JobScheduler'/>
+        <page name='taskgroup'/>
     </pages>
 </playground>
